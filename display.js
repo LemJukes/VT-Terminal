@@ -4,7 +4,7 @@ import { getTimeInWords } from './verbatempus-core.js';
 let typingTimer;
 let previousText = '';
 
-function typeWriter(element, text, speed = 50) {
+function typeWriter(element, text, speed = 100) {
     let i = 0;
     clearTimeout(typingTimer);
     element.textContent = '';
