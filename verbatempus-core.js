@@ -47,25 +47,32 @@ function getTimeInWords() {
     }
 
     if (minute in specialMinutes) {
-        minuteWord = specialMinutes[minute];
+        // Handle quarter/half/three quarters past
+        if (minute === 15) {
+            return `IT IS NOW QUARTER PAST ${hourWord}`;
+        } else if (minute === 30) {
+            return `IT IS NOW HALF PAST ${hourWord}`;
+        } else if (minute === 45) {
+            return `IT IS NOW QUARTER TO ${hours[(hour + 1) % 24]}`;
+        }
     }
-
+    
     if (minute === 1) {
-        return `IT IS ONE MINUTE PAST ${hourWord}`;
-    } else if (minute <= 30) {
-        return `IT IS ${minuteWord} MINUTES PAST ${hourWord}`;
+        return `IT IS NOW ONE MINUTE PAST ${hourWord}`;
+    } else if (minute < 30) {
+        return `IT IS NOW ${minuteWord} MINUTES PAST ${hourWord}`;
     } else {
         const nextHourWord = hours[(hour + 1) % 24];
         const remainingMinutes = 60 - minute;
         minuteWord = minutes[remainingMinutes];
         if (remainingMinutes === 10) {
-            return `IT IS TEN TILL ${nextHourWord}`;
+            return `IT IS NOW TEN TILL ${nextHourWord}`;
         } else if (remainingMinutes === 5) {
-            return `IT IS FIVE TILL ${nextHourWord}`;
+            return `IT IS NOW FIVE TILL ${nextHourWord}`;
         } else if (remainingMinutes === 1) {
-            return `IT IS ONE MINUTE TO ${nextHourWord}`;
+            return `IT IS NOW ONE MINUTE TO ${nextHourWord}`;
         } else {
-            return `IT IS ${minuteWord} MINUTES TO ${nextHourWord}`;
+            return `IT IS NOW ${minuteWord} MINUTES TO ${nextHourWord}`;
         }
     }
 }
