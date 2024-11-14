@@ -34,6 +34,7 @@ Built using vanilla JavaScript with modern ES6 modules:
 git clone https://github.com/yourusername/verbatempus.git
 
 2. Start a local web server:
+```bash
 # Using Python 3
 python -m http.server 8000
 
