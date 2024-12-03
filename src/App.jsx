@@ -28,7 +28,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    const fullText = verboseDate(currentTime) + ' and ' + verboseTime(currentTime)
+    const fullText = '> ' + verboseDate(currentTime) + ' and ' + verboseTime(currentTime)
     typeText(fullText, setDisplayedText)
   }, [currentTime])
 
