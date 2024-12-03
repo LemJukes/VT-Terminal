@@ -1,18 +1,55 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* App.css */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body {
+  background-color: #000;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: left;
+  align-items: center;
 }
 
-.time-container {
-  padding: 2em;
-  border-radius: 8px;
-  background-color: #f5f5f5;
-  margin: 2em;
+.App {
+  width: 100%;
+  max-width: 800px;
 }
 
-.date, .time {
-  font-size: 1.5em;
-  margin: 0.5em;
+.screen {
+  background-color: #000;
+  border: 0px;
+  padding: 40px;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.content {
+  background-color: #000;
+  padding: 20px;
+  min-height: 200px;
+  box-sizing: border-box;
+  overflow: hidden; 
+}
+
+.text {
+  font-family: 'VT323', monospace;
+  font-size: 2em;
+  color: #33ff33;
+  margin: 0.5em 0;
+  text-align: left;
+  position: relative;
+  word-wrap: break-word; 
+}
+
+.text::after {
+  content: '▋';
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
