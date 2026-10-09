@@ -1,36 +1,13 @@
 // App.jsx
-import { useState, useEffect } from 'react'
-import { verboseDate, verboseTime } from 'verbatempus'
+import { format } from 'verbatempus'
+import { useNow, useTypewriter } from './hooks.js'
+import { levelFromSearch } from './level.js'
 import './App.css'
 
 function App() {
-  const [currentTime, setCurrentTime] = useState(new Date())
-  const [displayedText, setDisplayedText] = useState('')
-
-  const typeText = (text, setterFunction, speed = 50) => {
-    let index = 0;
-    const interval = setInterval(() => {
-      setterFunction(text.substring(0, index))
-      index++
-      if (index > text.length) {
-        clearInterval(interval)
-      }
-    }, speed)
-  }
-
-  useEffect(() => {
-    // Update time every minute
-    const timer = setInterval(() => {
-      setCurrentTime(new Date())
-    }, 60000)
-
-    return () => clearInterval(timer)
-  }, [])
-
-  useEffect(() => {
-    const fullText = '> ' + verboseDate(currentTime) + ' and ' + verboseTime(currentTime)
-    typeText(fullText, setDisplayedText)
-  }, [currentTime])
+  const level = levelFromSearch(window.location.search)
+  const now = useNow()
+  const displayedText = useTypewriter('> ' + format(now, { level, parts: 'both' }))
 
   return (
     <div className="App">
