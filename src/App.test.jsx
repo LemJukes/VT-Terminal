@@ -88,6 +88,13 @@ describe('App', () => {
     expect(vi.getTimerCount()).toBe(1)
   })
 
+  test('terse minutes 6-14 read "a bit after", never "at after" (verbatempus 2.0.0 said "at after ten")', () => {
+    vi.setSystemTime(new Date(2026, 2, 3, 10, 8, 10)) // Tuesday 10:08:10
+    const { container } = renderApp('?level=terse')
+    advance(TYPING_TIME)
+    expect(screenText(container)).toBe('> it is tuesday at a bit after ten')
+  })
+
   describe('?level=', () => {
     test.each([
       ['verbose', VERBOSE_1024],
